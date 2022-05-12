@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="mail.RtcActivityNotice" owl="1">
+        <div class="o_RtcActivityNotice dropdown" t-attf-class="{{ className }}" t-ref="root">
+            <t t-if="messaging">
+                <RtcInvitations/>
+                <t t-if="messaging.rtc.channel">
+                    <a class="o_RtcActivityNotice_button px-3 user-select-none dropdown-toggle o-no-caret o-dropdown--narrow" t-att-title="rtcActivityNoticeView.buttonTitle" role="button" t-on-click="messaging.rtc.onClickActivityNoticeButton">
+                        <div class="o_RtcActivityNotice_buttonContent d-flex align-items-center">
+                            <i class="o_RtcActivityNotice_outputIndicator fa fa-lg" t-att-class="{
+                                'fa-microphone': !messaging.rtc.sendDisplay and !messaging.rtc.sendUserVideo,
+                                'fa-video-camera': messaging.rtc.sendUserVideo,
+                                'fa-desktop': messaging.rtc.sendDisplay,
+                            }"/>
+                            <em class="o_RtcActivityNotice_buttonTitle text-truncate" t-esc="messaging.rtc.channel.displayName"/>
+                        </div>
+                    </a>
+                </t>
+            </t>
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,22 @@
+.o_command_palette {
+    $-app-icon-size: 1.8rem;
+    
+    > .modal-body {
+        padding: 0;
+    }
+
+    &_listbox {
+        max-height: 50vh;   
+
+        .o_command {
+            &.focused {
+                background: rgba($o-brand-primary, 0.25);
+            }
+        }
+    }
+
+    .o_app_icon {
+        height: $-app-icon-size;
+        width: $-app-icon-size;
+    }
+}

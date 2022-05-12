@@ -1,0 +1,7 @@
+.modal.o_technical_modal .modal-footer {
+    gap: map-get($spacers, 1);
+
+    button {
+        margin: 0; // Reset boostrap.
+    }
+}

@@ -1,0 +1,54 @@
+/*!rtl:begin:ignore*/
+
+@keyframes slide-top {
+	0% {
+		opacity: 0;
+		transform: translateY(-5%);
+	}
+}
+
+@keyframes slide-right {
+	0% {
+		opacity: 0;
+		transform: translateX(5%);
+	}
+}
+
+@keyframes slide-bottom {
+	0% {
+		opacity: 0;
+		transform: translateY(5%);
+	}
+}
+
+@keyframes slide-left {
+	0% {
+		opacity: 0;
+		transform: translateX(-5%);
+	}
+}
+
+.o_popover {
+	@each $direction in (top, right, bottom, left) {		
+		&.bs-popover-#{$direction} {
+			animation: 0.2s slide-#{$direction};
+		}
+	}
+
+	&.o-popover--ts .arrow, &.o-popover--bs .arrow {
+		left: $popover-border-radius;
+	}
+
+	&.o-popover--te .arrow, &.o-popover--be .arrow {
+		right: $popover-border-radius;
+	}
+
+	&.o-popover--ls .arrow, &.o-popover--rs .arrow {
+		top: $popover-border-radius;
+	}
+	
+	&.o-popover--le .arrow, &.o-popover--re .arrow {
+		bottom: $popover-border-radius;
+	}
+}
+/*!rtl:end:ignore*/

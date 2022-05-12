@@ -1,0 +1,24 @@
+.o_MessageInReplyToView {
+    padding-left: $o-mail-message-sidebar-width;
+}
+
+.o_MessageInReplyToView_corner {
+    left: $o-mail-message-sidebar-width / 2;
+    border-left: $border-width solid currentColor;
+    border-top: $border-width solid currentColor;
+    border-radius: $o-mail-rounded-rectangle-border-radius-sm 0 0 0;
+}
+
+.o_MessageInReplyToView_body {
+    @include o-hover-text-color($o-main-color-muted, inherit);
+
+    // Make the body single line when possible
+    p, div {
+        display: inline;
+        margin: 0;
+    }
+
+    br {
+        display: none;
+    }
+}

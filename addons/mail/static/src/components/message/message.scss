@@ -1,0 +1,127 @@
+// ------------------------------------------------------------------
+// Layout
+// ------------------------------------------------------------------
+
+// TODO : When the migration to BS5 for the backend AND the frontend
+// will be done, we could use BS5 classes to handle the position values
+// (eg. position-absolute top-0 end-0 mt-n3)
+.o_Message_actionListContainer {
+    @include o-position-absolute($top: - map-get($spacers, 3), $right: 0);
+    z-index: 10; // Place the element in front of the Composer when they overlap
+    
+    &.o-squashed {
+        @include o-position-absolute($top: - map-get($spacers, 4), $right: 0);
+    }
+}
+
+.o_Message_authorAvatar {
+    object-fit: cover;
+}
+
+.o_Message_authorAvatarContainer {
+    height: $o-mail-thread-avatar-size;
+    width: $o-mail-thread-avatar-size;
+}
+
+.o_Message_authorName {
+    // Could be replaced by "me-2" after the migration to BS5
+    // for the backend AND the frontend
+    margin-inline-end: map-get($spacers, 2);
+}
+
+.o_Message_content {
+    *:not(li):not(li div) {
+        // Message content can contain arbitrary HTML that might overflow and break
+        // the style without this rule.
+        // Lists are ignored because otherwise bullet style become hidden from overflow.
+        // It's acceptable not to manage overflow of these tags for the moment.
+        // It also excludes all div in li because 1st leaf and div child of list overflow
+        // may impact the bullet point (at least it does on Safari).
+        max-width: map-get($sizes, 100);
+        overflow-x: auto;
+    }
+
+    img {
+        max-width: map-get($sizes, 100);
+        height: auto;
+    }
+}
+
+.o_Message_core {
+    min-width: 0; // allows this flex child to shrink more than its content
+    // Could be replaced by "me-4" after the migration to BS5
+    // for the backend AND the frontend
+    margin-inline-end: map-get($spacers, 4);
+}
+
+.o_Message_headerDate {
+    // Could be replaced by "me-2" after the migration to BS5
+    // for the backend AND the frontend
+    margin-inline-end: map-get($spacers, 2);
+}
+
+.o_Message_highlightIndicator {
+    // Could be replaced by "position absolute top-0 start-0"
+    // after the migration to BS5 for the backend AND the frontend
+    @include o-position-absolute($top: 0, $left: 0);
+    width: $o-mail-discuss-message-highlight-indicator-width;
+    transition: background-color .5s ease-out;
+}
+
+.o_Message_originThread {
+    // Could be replaced by "me-2" after the migration to BS5
+    // for the backend AND the frontend
+    margin-inline-end: map-get($spacers, 2);
+}
+
+.o_Message_partnerImStatusIcon {
+    // Could be replaced by "position absolute bottom-0 end-0"
+    // after the migration to BS5 for the backend AND the frontend
+    @include o-position-absolute($bottom: 0, $right: 0);
+}
+
+.o_Message_prettyBody > p {
+    margin-bottom: 0;
+}
+
+.o_Message_seenIndicator {
+    // Could be replaced by "me-1" after the migration to BS5
+    // for the backend AND the frontend
+    margin-inline-end: map-get($spacers, 1);
+}
+
+.o_Message_sidebar {
+    flex-basis: $o-mail-message-sidebar-width;
+    max-width: $o-mail-message-sidebar-width;
+}
+
+// ------------------------------------------------------------------
+// Style
+// ------------------------------------------------------------------
+
+.o_Message {
+    transition: background-color .5s ease-out;
+
+    &.o-not-discussion.o-selected {
+        border-bottom: 1px solid darken(gray('400'), 5%);
+    }
+
+    &.o-highlighted {
+        background-color: rgba($o-brand-primary, .1);
+
+        &.o_Message_active {
+            background-color: rgba($o-brand-primary, .2);
+        }
+    }
+}
+
+.o_Message_originThreadLink {
+    font-size: 1.25em; // original size
+}
+
+// Used to hide buttons on rating emails in chatter
+// FIXME: should use a better approach for not having such buttons
+// in chatter of such messages, but keep having them in emails.
+.o_Message_content [summary~="o_mail_notification"] {
+    display: none;
+}
